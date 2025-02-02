@@ -1,6 +1,6 @@
 ; *******************************************************
 ; FoundryOS
-; Boot
+; Bootloader
 ; 'boot.asm'
 ; Author: jcjuarez
 ; *******************************************************
@@ -60,9 +60,9 @@ print_char:
     int 0x10
     ret
 
-error_message: db 'Failed to load sector', 0
+error_message: db 'Failed to load premessage sector.', 0
 
 times 510-($ - $$) db 0
-dw 0xAA55
+dw 0xAA55 ; Boot signature at 0x1FE.
 
-buffer:
+buffer: ; Will contain the referred sector loaded into memory.
